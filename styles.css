@@ -1,0 +1,259 @@
+:root {
+    --card-height: 300px;
+    --card-width: calc(var(--card-height) / 1.5);
+}
+
+/* General styling for both nav bars */
+.top-nav, .bottom-nav {
+    background-color: black;
+    color: white;
+    padding: 10px 0;
+    margin: 0; /* Remove default margins */
+}
+
+/* Styling for top nav */
+.top-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px; /* Add padding to the sides */
+}
+
+.top-nav .logo img {
+    width: 70px; /* Adjust size of logo as needed */
+}
+
+.top-nav .logo2 {
+    flex: 1; /* Make the logo div grow to fill available space */
+    text-align: center; /* Center the logo horizontally */
+    margin-left: 20px; /* Add spacing between logos */
+}
+
+.top-nav .logo2 img {
+    width: 200px; /* Adjust size of logo as needed */
+}
+
+.top-nav .logo3 img {
+    width: 70px; /* Adjust size of logo as needed */
+}
+
+/* Styling for bottom nav */
+.bottom-nav {
+    text-align: center;
+    margin-top: 0; /* Remove default margin-top */
+    margin-bottom: 0; /* Remove default margin-bottom */
+}
+
+.bottom-nav a {
+    padding: 10px 20px;
+    text-decoration: none;
+    margin: 0 10px; /* Increase spacing between links */
+    color: white; /* Change text color to white */
+    font-family: Arial, sans-serif; /* Apply a better font */
+    font-weight: bold; /* Make the text bold */
+    position: relative; /* Set position to relative for hover effect */
+    transition: transform 0.3s ease, color 0.3s ease; /* Smooth transition for scaling effect */
+}
+
+/* Add underline effect on hover */
+.bottom-nav a::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #ff0000; /* Marvel red color */
+    transform: scaleX(0); /* Initially hide the underline */
+    transform-origin: center; /* Start the transformation from the center */
+    transition: transform 0.3s ease; /* Smooth transition effect */
+}
+
+.bottom-nav a:hover {
+    transform: scale(1.1); /* Scale up the text on hover */
+    color: #ff0000; /* Change text color to marvel red */
+}
+
+.bottom-nav a:hover::before {
+    transform: scaleX(1); /* Stretch the underline to full width */
+}
+
+body {
+    margin: 0; /* Remove default body margin */
+    background-color: black;
+}
+
+/* Styling for the banner */
+.banner {
+    position: relative;
+    text-align: center;
+}
+
+.banner img {
+    max-width: 100%;
+    height: auto;
+}
+
+.banner-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent white background */
+    padding: 20px;
+}
+
+.banner-content h1 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.banner-content p {
+    margin-top: 10px;
+    color: #666;
+}
+
+.video-container {
+    position: relative;
+    width: 100%;
+    height: 400px; /* Set the desired height */
+    max-width: 2500px; /* Set the desired maximum width */
+    margin: auto; /* Center the video horizontally */
+    overflow: hidden;
+}
+
+video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card {
+    width: var(--card-width);
+    height: var(--card-height);
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    padding: 0 36px;
+    perspective: 2500px;
+    margin: 0 50px;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.wrapper {
+    transition: all 0.5s;
+    position: absolute;
+    width: 120%;
+    z-index: -1;
+}
+
+.card:hover .wrapper {
+    transform: perspective(900px) translateY(-5%) rotateX(25deg) translateZ(0);
+    box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 35px 32px -8px rgba(0, 0, 0, 0.75);
+}
+
+.wrapper::before,
+.wrapper::after {
+    content: "";
+    opacity: 0;
+    width: 100%;
+    height: 80px;
+    transition: all 0.5s;
+    position: absolute;
+    left: 0;
+}
+
+.wrapper::before {
+    top: 0;
+    height: 100%;
+    background-image: linear-gradient(
+        to top,
+        transparent 46%,
+        rgba(12, 13, 19, 0.5) 68%,
+        rgba(12, 13, 19) 97%
+    );
+}
+
+.wrapper::after {
+    bottom: 0;
+    opacity: 1;
+    background-image: linear-gradient(
+        to bottom,
+        transparent 46%,
+        rgba(12, 13, 19, 0.5) 68%,
+        rgba(12, 13, 19) 97%
+    );
+}
+
+.card:hover .wrapper::before,
+.wrapper::after {
+    opacity: 1;
+}
+
+.card:hover .wrapper::after {
+    height: 120px;
+}
+
+.character {
+    width: 100%;
+    opacity: 0;
+    transition: all 0.5s;
+    position: absolute;
+    z-index: -1;
+}
+
+.card:hover .character {
+    opacity: 1;
+    transform: translate3d(0%, -30%, 100px);
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* Three columns */
+  grid-gap:20px; /* Gap between grid items */
+}
+
+.grid-row {
+  display: flex;
+  justify-content: space-between;
+margin-top: 100px;
+}
+
+.grid-item {
+  flex: 1;
+}
+
+.marvel-logo {
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.marvel-logo img {
+    max-width: 900%; /* Ensure the image doesn't exceed its container's width */
+    height: auto; /* Maintain aspect ratio */
+}
+
+h4 {
+    color: white;
+    font-size: 40px;
+    text-align: center;
+    font-family: sans-serif;
+    
+}
+
+h3 {
+     color: white;
+    font-size: 40px;
+    text-align: center;
+    font-family: sans-serif;
+}
